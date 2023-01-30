@@ -16,6 +16,14 @@ app.post("/using", (req, res) => {
   currentUsers.push(user);
   res.status(200).json({ message: `${user} is now using the machine.` });
 });
+
+app.post("/force-taking", (req, res) => {
+  currentUsers[0] = req.body.user;
+  return res.status(200).json({
+    message: `${currentUsers[0]} taking access of no machine using force command!`,
+  });
+});
+
 app.post("/finish", (req, res) => {
   const user = req.body.user;
   if (currentUsers.length === 0) {
